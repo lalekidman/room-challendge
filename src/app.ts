@@ -1,9 +1,7 @@
 require('dotenv').config({path: `${__dirname}/../.env`})
 import * as express from 'express'
 import {Request, Response, NextFunction} from 'express'
-import * as path from 'path'
 import * as bodyParser from 'body-parser'
-import * as mongoose from 'mongoose'
 import * as passport from 'passport'
 import * as HttpStatus from 'http-status-codes'
 import * as morgan from 'morgan'
@@ -15,14 +13,21 @@ import flash = require('connect-flash')
 import {Server as SocketServer} from 'socket.io'
 import * as socketio from 'socket.io'
 import {createServer, Server} from 'http'
-import DB from './class/db'
+import DB from './controller/db'
 import { DB_HOST, DB_NAME, SERVER_PORT } from './utils/constants'
 
-// publishers and streamers
-import MainPublisher from './publishers/index'
-import MainStreamer from './streamers/index'
+/**
+ * routes
+ */
+import MainRoute from './routes/index'
 
-const SECRET = ''
+/**
+ * guard
+ */
+import './controller/passport'
+// publishers and streamers
+// remove some unnecessary codes
+const SECRET = 'EXAMINEESECRETKEY'
 // import * as MongoOplog from 'mongo-oplog'
 // import {} from 'mongo-oplog'
 // import { Db } from 'mongodb';
@@ -42,6 +47,7 @@ class App {
   }
   private mountRoutes (): void {
     // Where the router import
+    this.app.use(new MainRoute().expose())
   }
   private connectWebSocket (server: any):void {
     this.io = socketio(server)
@@ -59,8 +65,7 @@ class App {
   private async connectDatabase () {
     await new DB(DB_HOST, DB_NAME).connect()
       ?.then(() => {
-        new MainPublisher().publish()
-        new MainStreamer().stream()
+        // SOME
       })
   }
   public listen (port?: number):void {

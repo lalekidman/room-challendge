@@ -19,11 +19,10 @@ export const hash = (password: string): Promise<string> => {
 export const compare = (password: string, hashPassword: string) => bcrypt.compare(password, hashPassword)
 export const compareSync = (password: string, hashPassword: string) => bcrypt.compareSync(password, hashPassword)
 export default class Bcrypt {
-  private saltRound: number = 15
-  constructor (saltRound: number) {
-    if (saltRound) {
-      this.saltRound = saltRound
-    }
+  private saltRound: number
+  constructor (saltRound: number = 15) {
+    this.saltRound = saltRound
+    console.log(' >> salt  fucking here right round',  saltRound)
   }
   hash (password: string): Promise<string> {
     return new Promise((resolve, reject) => {

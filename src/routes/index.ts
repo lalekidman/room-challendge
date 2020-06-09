@@ -1,6 +1,8 @@
 import * as express from 'express'
 import {Request, Response, NextFunction, Router} from 'express'
 import * as HttpStatus from 'http-status-codes'
+import UserRoute from './users'
+import AuthenticateUserRoute from './authenticate'
 export default class _Router {
   /**
    * @class initiate router class
@@ -9,11 +11,13 @@ export default class _Router {
   constructor () {
     this.router = Router({mergeParams: true})
   }
-
+  /**
+   * expose routes
+   */
   public expose () {
-    this.router.get('/', (req: Request, res: Response, next: NextFunction) => {
-      res.status(HttpStatus.OK).send({result: true})
-    })
+    this.router
+      .use('/users', new UserRoute().expose())
+      .use('/authenticate', new AuthenticateUserRoute().expose())
     return this.router
   }
 }

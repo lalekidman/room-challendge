@@ -18,6 +18,16 @@ export const UNAUTHORIZED_REQUEST = {
   errorCode: 'UNAUTHORIZED_REQUEST',
   errorMessage: ''
 }
+export const INVALID_ACCESS_TOKEN_FORMAT = {
+  statusCode: 10402,
+  errorCode: 'INVALID_ACCESS_TOKEN_FORMAT',
+  errorMessage: ''
+}
+export const ACCESS_TOKEN_EXPIRED = {
+  statusCode: 10403,
+  errorCode: 'ACCESS_TOKEN_EXPIRED',
+  errorMessage: ''
+}
 export const INVALID_FILE_TYPE = {
   statusCode: 10701,
   errorCode: 'INVALID_FILE_TYPE',
