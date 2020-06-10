@@ -110,7 +110,7 @@ class Queries <T> {
    * }
    * @param data 
    */
-  protected initilize(data: any) {
+  protected initilize<AT>(data: AT) {
     const id = uuid()
     //override the _id id createdAt and updatedAt when the data object already have it.
     //@ts-ignore
