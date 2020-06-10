@@ -28,7 +28,7 @@
     "jsonwebtoken": "^8.5.1",
     "kafka-node": "^5.0.0",
     "moment": "^2.24.0",
-    "mongoose": "^5.2.5",
+    "mongoose": "^5.7.5",
     "morgan": "^1.9.1",
     "nodemon": "^1.18.10",
     "passport": "^0.4.0",
