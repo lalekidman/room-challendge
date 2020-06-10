@@ -1,7 +1,7 @@
 {
-  "name": "ts-boilerplate",
+  "name": "room-challenge",
   "version": "1.0.0",
-  "description": "for start up project.",
+  "description": "Just for a exam",
   "main": "index.js",
   "scripts": {
     "start": "pm2-dev dist/app.js",
